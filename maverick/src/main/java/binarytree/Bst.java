@@ -52,4 +52,91 @@ public class Bst {
 		}
 		return current;
 	}
+	
+	public boolean delete(int key) {
+		
+		Node parent = root;
+		Node current = root;
+		boolean isLeft = true;
+		
+		while(current.key != key) {
+			parent = current;
+			if(current.key > key) {
+				isLeft = true;
+				current = current.left;
+			} else {
+				isLeft = false;
+				current = current.right;
+			}
+			if(current == null) {
+				return false;
+			}
+			
+		}
+		
+		Node deleteNode = current;
+		
+		if(deleteNode.left == null && deleteNode.right == null) {
+			if(deleteNode == root) {
+				root = null;
+			}else if(isLeft) {
+				parent.left = null;
+			} else {
+				parent.right = null;
+			}
+		}
+		else if(deleteNode.right == null) {
+			if(deleteNode == root) {
+				root = deleteNode.left;
+			} else if(isLeft) {
+				parent.left = deleteNode.left;
+			} else {
+				parent.right = deleteNode.left;
+			}
+		}
+		else if(deleteNode.left == null) {
+			if(deleteNode == root) {
+				root = deleteNode.right;
+			} else if(isLeft) {
+				parent.left = deleteNode.right;
+			} else {
+				parent.right = deleteNode.right;
+			}
+		} else {
+			
+			Node successor = this.getScuccessor(deleteNode);
+			
+			if(deleteNode == root) {
+				root = successor;
+			} else if(isLeft) {
+				parent.left = successor;
+			} else {
+				parent.right = successor;
+			}
+			
+			successor.left = deleteNode.left;
+			
+			
+		}
+		
+		return true;
+	}
+	
+	Node getScuccessor(Node nodeToDelete) {
+		Node successorParent = nodeToDelete;
+		Node successor = nodeToDelete;
+		Node current = nodeToDelete.right;
+		
+		while(current != null) {
+			successorParent = successor;
+			successor = current;
+			current = current.left;
+		}
+		
+		if(successor != nodeToDelete.right) {
+			successorParent.left = successor.right;
+			successor.right = nodeToDelete.right;
+		}
+		return successor;
+	}
 }
