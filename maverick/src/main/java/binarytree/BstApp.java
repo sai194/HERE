@@ -8,6 +8,8 @@ public class BstApp {
 		bst.insert(new Node(10, "Ten"));
 		bst.insert(new Node(30, "Thirty"));
 		bst.insert(new Node(5, "Five"));
+		bst.insert(new Node(2, "Five"));
+		bst.insert(new Node(3, "Three"));
 		bst.insert(new Node(15, "Fifteen"));
 		bst.insert(new Node(50, "Fifty"));
 		bst.insert(new Node(40, "Fourty"));
@@ -15,7 +17,11 @@ public class BstApp {
 		
 		System.out.println(bst.findMin(bst.root).key);
 		System.out.println(bst.findMax(bst.root).key);
-
+		bst.print();
+		bst.delete(3);
+		System.out.println(bst.findMin(bst.root).key);
+		System.out.println(bst.findMax(bst.root).key);
+		bst.print();
 	}
 
 }

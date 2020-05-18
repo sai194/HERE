@@ -139,4 +139,28 @@ public class Bst {
 		}
 		return successor;
 	}
+	
+	public void print() {
+	    printHelper(root, "");
+	  }
+	
+	private static void printHelper(Node root, String indent) {
+	    if (root == null) {
+	      System.out.println(indent + "|");
+	      return;
+	    }
+
+	    // Pick a pretty indent.
+	    String newIndent;
+	    if (indent.equals("")) {
+	      newIndent = ".. ";
+	    }
+	    else {
+	      newIndent = "..." + indent;
+	    }
+
+	    printHelper(root.right, newIndent);
+	    System.out.println(indent + root.key);
+	    printHelper(root.left, newIndent);
+	  }
 }
