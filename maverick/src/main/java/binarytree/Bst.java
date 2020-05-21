@@ -146,7 +146,7 @@ public class Bst {
 	
 	private static void printHelper(Node root, String indent) {
 	    if (root == null) {
-	      System.out.println(indent + "||");
+	      System.out.println(indent + "||merge");
 	      return;
 	    }
 
